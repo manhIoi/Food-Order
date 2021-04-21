@@ -3,6 +3,8 @@ import {ScrollView, View} from 'react-native';
 import Banner from '../../components/Banner/Banner';
 import Categories from '../../components/Categories/Categories';
 import Promos from '../../components/Promos/Promos';
+import Restaurant from '../../components/Restaurants/Restaurant/Restaurant';
+import Restaurants from '../../components/Restaurants/Restaurants';
 import RestaurantSuggestions from '../../components/RestaurantSuggestions/RestaurantSuggestions';
 
 function HomeScreen(props) {
@@ -19,6 +21,8 @@ function HomeScreen(props) {
       <RestaurantSuggestions />
       <RestaurantSuggestions />
       <RestaurantSuggestions />
+      <Restaurants />
+      <Restaurants />
     </ScrollView>
   );
 }

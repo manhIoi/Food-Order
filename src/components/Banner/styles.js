@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 3,
     overflow: 'hidden',
+    borderRadius: 6,
     marginVertical: 4,
   },
   bannerImage: {

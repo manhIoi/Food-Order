@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import stylesPromos from './styles';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/core';
 
 const PROMOS = {
   header: {
@@ -43,6 +44,7 @@ const PROMOS = {
 };
 
 function Promos() {
+  const navitaion = useNavigation();
   return (
     <View style={stylesPromos.promosContainer}>
       <View style={stylesPromos.promosHeader}>
@@ -55,7 +57,10 @@ function Promos() {
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {PROMOS.promos.map(promo => (
-          <TouchableOpacity key={promo._id} style={stylesPromos.promoContainer}>
+          <TouchableOpacity
+            onPress={() => navitaion.navigate('Restaurant')}
+            key={promo._id}
+            style={stylesPromos.promoContainer}>
             <Image
               style={stylesPromos.promoImage}
               resizeMode="cover"
