@@ -61,7 +61,7 @@ function Categories({navigation}) {
         <TouchableOpacity
           key={category._id}
           onPress={() =>
-            navigation.navigate('ListRestaurants', {slug: category.slug})
+            navigation.navigate('ListRestaurant', {slug: category.slug})
           }
           style={stylesCategoris.categoryWrapper}>
           <Image

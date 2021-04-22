@@ -1,11 +1,21 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {
+  Image,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import stylesFood from './styles';
 
 function Food(props) {
   const {food, lastFood} = props;
+  const navigation = useNavigation();
   return (
-    <View style={[stylesFood.foodContainer, lastFood && stylesFood.lastFood]}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Food')}
+      style={[stylesFood.foodContainer, lastFood && stylesFood.lastFood]}>
       <View style={stylesFood.foodDescription}>
         <Text style={[stylesFood.foodText, stylesFood.foodName]}>
           {food.foodName}
@@ -21,7 +31,7 @@ function Food(props) {
           }}
         />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
