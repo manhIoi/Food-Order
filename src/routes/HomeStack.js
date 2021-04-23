@@ -5,13 +5,23 @@ import {createStackNavigator} from '@react-navigation/stack';
 import RestaurantScreen from '../screens/Restaurant/RestaurantScreen';
 import FoodScreen from '../screens/Food/FoodScreen';
 import ListRestaurantScreen from '../screens/ListRestaurant/ListRestaurantScreen';
+import configOptionsHeader from '../constants/configOptionsHeader';
+
 const Stack = createStackNavigator();
+
+const options = {
+  headerTitleAlign: configOptionsHeader.headerAlign,
+};
 
 function HomeStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="ListRestaurant" component={ListRestaurantScreen} />
+      <Stack.Screen options={options} name="Home" component={HomeScreen} />
+      <Stack.Screen
+        options={options}
+        name="ListRestaurant"
+        component={ListRestaurantScreen}
+      />
       <Stack.Screen
         name="Restaurant"
         component={RestaurantScreen}
@@ -19,7 +29,7 @@ function HomeStack() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Food" component={FoodScreen} />
+      <Stack.Screen options={options} name="Food" component={FoodScreen} />
     </Stack.Navigator>
   );
 }

@@ -5,6 +5,7 @@ import stylesAuth from './styles';
 import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
 
 function SignInScreen() {
   const navigation = useNavigation();
@@ -14,10 +15,18 @@ function SignInScreen() {
       <StatusBar backgroundColor={rootColor.primaryColor} />
       {/* End StatusBar */}
       <View style={stylesAuth.authHeader}>
-        <Text style={stylesAuth.authHeaderText}>Sign In For Order !</Text>
+        <Animatable.Text
+          animation="fadeInLeft"
+          duration={2000}
+          style={stylesAuth.authHeaderText}>
+          Sign In For Order !
+        </Animatable.Text>
       </View>
       {/* Auth Form */}
-      <View style={stylesAuth.authForm}>
+      <Animatable.View
+        animation="bounceInUp"
+        duration={2000}
+        style={stylesAuth.authForm}>
         <Text style={stylesAuth.authFormHeader}>Sign In</Text>
         {/* Form Input */}
         <View style={stylesAuth.authFormWrapper}>
@@ -64,7 +73,7 @@ function SignInScreen() {
           />
         </View>
         {/* End Form Action */}
-      </View>
+      </Animatable.View>
     </View>
   );
 }

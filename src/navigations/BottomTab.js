@@ -6,6 +6,7 @@ import CartStack from '../routes/CartStack';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import rootColor from '../constants/color';
 import AuthStack from '../routes/AuthStack';
+import MessagesStack from '../routes/MessagesStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -30,13 +31,23 @@ function BottomTab() {
         name="Cart"
         component={CartStack}
         options={{
-          tabBarColor: '#F2BB16',
+          tabBarColor: '#8fd9a8',
           tabBarIcon: ({color}) => (
             <MaterialIcon
               name="shopping-bag"
               color={rootColor.whiteColor}
               size={26}
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Messages"
+        component={MessagesStack}
+        options={{
+          tabBarColor: '#4b778d',
+          tabBarIcon: ({color}) => (
+            <MaterialIcon name="email" color={rootColor.whiteColor} size={26} />
           ),
         }}
       />

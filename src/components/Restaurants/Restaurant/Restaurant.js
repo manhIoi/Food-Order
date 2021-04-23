@@ -10,6 +10,7 @@ function Restaurant(props) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={() => navigation.navigate('Restaurant')}
       style={[
         stylesRestaurant.restaurantContainer,

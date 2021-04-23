@@ -7,17 +7,18 @@ import Restaurant from '../../components/Restaurants/Restaurant/Restaurant';
 import Restaurants from '../../components/Restaurants/Restaurants';
 import RestaurantSuggestions from '../../components/RestaurantSuggestions/RestaurantSuggestions';
 
+// fakeDAta
+import {CATEGORIES, LIST_PROMOS} from '../../../data';
+
 function HomeScreen(props) {
   const {navigation} = props;
-  console.log(navigation);
   return (
     <ScrollView style={{backgroundColor: '#f1f1f1'}}>
       <Banner />
-      <Categories navigation={navigation} />
-      <Promos />
-      <Promos />
-      <Promos />
-      <Promos />
+      <Categories categories={CATEGORIES} navigation={navigation} />
+      {LIST_PROMOS.map(promos => (
+        <Promos key={promos._id} promos={promos} />
+      ))}
       <RestaurantSuggestions />
       <RestaurantSuggestions />
       <RestaurantSuggestions />

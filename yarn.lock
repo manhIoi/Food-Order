@@ -947,6 +947,18 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-hook/cache@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@react-hook/cache/-/cache-1.1.0.tgz#de9650705ab59c01053008b4af7c430213607375"
+  integrity sha512-YVTWMZ+/PlDrxwpE1XVMOj9uy8dCZhOuPIt0AnCWIRtA05gm0n2eZdzEBl7bA42/XUbgWd3k+NlVahI23huV4g==
+  dependencies:
+    "@react-hook/latest" "^1.0.2"
+
+"@react-hook/latest@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@react-hook/latest/-/latest-1.0.3.tgz#c2d1d0b0af8b69ec6e2b3a2412ba0768ac82db80"
+  integrity sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==
+
 "@react-native-community/cli-debugger-ui@^5.0.1-alpha.1":
   version "5.0.1-alpha.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-5.0.1-alpha.1.tgz#09a856ccd2954cf16eea59b14dd26ae66720e4e6"

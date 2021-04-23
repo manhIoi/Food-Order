@@ -72,7 +72,7 @@ function FormOrder() {
         <ButtonPrimary
           contents={['Đặt hàng', '20000đ']}
           options={{
-            justify: 'space-between',
+            justifyContent: 'space-between',
             width: '80%',
             height: 50,
           }}

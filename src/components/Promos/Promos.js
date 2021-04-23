@@ -4,60 +4,23 @@ import stylesPromos from './styles';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/core';
 
-const PROMOS = {
-  header: {
-    headerStrong: 'Deal Hot chỉ 5k',
-    headerNormal: 'Khao 20k cho đơn hàng từ 25k',
-  },
-  promos: [
-    {
-      _id: 1,
-      image:
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg',
-      name: 'Cộng rau má - Hoàng Diệu 2 babf abfbabf ababfa afb asf asf',
-    },
-    {
-      _id: 2,
-      image:
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg',
-      name: 'Cộng rau má - Hoàng Diệu 2 babf abfbabf ababfa afb asf asf',
-    },
-    {
-      _id: 3,
-      image:
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg',
-      name: 'Cộng rau má - Hoàng Diệu 2 babf abfbabf ababfa afb asf asf',
-    },
-    {
-      _id: 4,
-      image:
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg',
-      name: 'Cộng rau má - Hoàng Diệu 2 babf abfbabf ababfa afb asf asf',
-    },
-    {
-      _id: 5,
-      image:
-        'https://media-cdn.tripadvisor.com/media/photo-s/15/03/79/e3/otto-s-anatolian-food.jpg',
-      name: 'Cộng rau má - Hoàng Diệu 2 babf abfbabf ababfa afb asf asf',
-    },
-  ],
-};
-
-function Promos() {
+function Promos(props) {
+  const {promos} = props;
   const navitaion = useNavigation();
   return (
     <View style={stylesPromos.promosContainer}>
       <View style={stylesPromos.promosHeader}>
         <Text style={stylesPromos.prmosHeaderStrong}>
-          {PROMOS.header.headerStrong}
+          {promos.headerPromos.headerStrong}
         </Text>
         <Text style={stylesPromos.prmosHeaderNormal}>
-          {PROMOS.header.headerNormal}
+          {promos.headerPromos.headerNormal}
         </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {PROMOS.promos.map(promo => (
+        {promos.promos.map(promo => (
           <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => navitaion.navigate('Restaurant')}
             key={promo._id}
             style={stylesPromos.promoContainer}>

@@ -1,5 +1,6 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, ScrollView, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import stylesSuggestions from './styles';
 
 const SUGGESTIONS = {
@@ -44,6 +45,7 @@ const SUGGESTIONS = {
 };
 
 function RestaurantSuggestions() {
+  const navigation = useNavigation();
   return (
     <View style={stylesSuggestions.suggestionsContainer}>
       <View style={stylesSuggestions.suggestionsHeader}>
@@ -53,7 +55,9 @@ function RestaurantSuggestions() {
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {SUGGESTIONS.suggestions.map(suggestion => (
-          <View
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ListRestaurant')}
+            activeOpacity={0.8}
             key={suggestion._id}
             style={stylesSuggestions.suggestionContainer}>
             <Image
@@ -74,7 +78,7 @@ function RestaurantSuggestions() {
                 {suggestion.normalText}
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

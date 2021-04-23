@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import FoodBanner from '../../components/FoodBanner/FoodBanner';
+import Restaurants from '../../components/Restaurants/Restaurants';
 
 function ListRestaurantScreen() {
   return (
-    <View>
-      <Text>From list Restaurant</Text>
-    </View>
+    <ScrollView style={{backgroundColor: '#fff'}}>
+      <FoodBanner />
+      <Restaurants />
+    </ScrollView>
   );
 }
 

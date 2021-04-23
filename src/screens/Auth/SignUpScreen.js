@@ -5,6 +5,7 @@ import rootColor from '../../constants/color';
 import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
 
 function SignUpScreen() {
   const navigation = useNavigation();
@@ -12,11 +13,19 @@ function SignUpScreen() {
     <View style={stylesAuth.authContainer}>
       <StatusBar backgroundColor={rootColor.primaryColor} />
       <View style={stylesAuth.authHeader}>
-        <Text style={stylesAuth.authHeaderText}>Sign Up For Order !</Text>
+        <Animatable.Text
+          animation="fadeInLeft"
+          duration={2000}
+          style={stylesAuth.authHeaderText}>
+          Sign Up For Order !
+        </Animatable.Text>
       </View>
       {/* Auth Form */}
-      <View style={[stylesAuth.authForm, {flex: 4}]}>
-        <Text style={stylesAuth.authFormHeader}>Sign In</Text>
+      <Animatable.View
+        animation="bounceInUp"
+        duration={2000}
+        style={[stylesAuth.authForm, {flex: 4}]}>
+        <Text style={stylesAuth.authFormHeader}>Sign Up</Text>
         {/* Form Input */}
         <View style={stylesAuth.authFormWrapper}>
           <View style={{marginBottom: 8}}>
@@ -89,7 +98,7 @@ function SignUpScreen() {
           />
         </View>
         {/* End Form Action */}
-      </View>
+      </Animatable.View>
     </View>
   );
 }

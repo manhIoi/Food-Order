@@ -14,6 +14,7 @@ function Food(props) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={() => navigation.navigate('Food')}
       style={[stylesFood.foodContainer, lastFood && stylesFood.lastFood]}>
       <View style={stylesFood.foodDescription}>
