@@ -1,24 +1,28 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
 import rootColor from '../../constants/color';
+import {removeFromCart} from '../../redux/actions/cartAction';
 
-function CartFood() {
+function CartFood(props) {
+  const {food} = props;
+  const dispatch = useDispatch();
   return (
     <View style={styles.cartFoodcontainer}>
       <View style={styles.cartFoodWrapper}>
         <Text style={{marginRight: 10, color: rootColor.grayPrimaryColor}}>
-          1x
+          {food.quanity}x
         </Text>
-        <Text>Rau câu trái dừa</Text>
+        <Text>{food.name}</Text>
       </View>
       <View style={styles.cartFoodWrapper}>
-        <Text>28.000đ</Text>
+        <Text>{food.totalPrice} đ</Text>
         <IconButton
           icon="delete"
           color={rootColor.primaryColor}
           size={20}
-          onPress={() => console.log('Pressed')}
+          onPress={() => dispatch(removeFromCart(food))}
         />
       </View>
     </View>

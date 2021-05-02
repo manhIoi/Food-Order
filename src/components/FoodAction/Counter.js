@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {IconButton, Colors} from 'react-native-paper';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import rootColor from '../../constants/color';
 
-function Counter() {
+function Counter(props) {
   const [count, setCount] = useState(1);
+  const {getCurrentValue} = props;
+
+  useEffect(() => {
+    getCurrentValue(count);
+  }, [count]);
+
   return (
     <View style={styles.counterContainer}>
       <IconButton

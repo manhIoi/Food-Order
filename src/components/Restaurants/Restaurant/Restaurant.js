@@ -11,7 +11,9 @@ function Restaurant(props) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('Restaurant')}
+      onPress={() =>
+        navigation.navigate('Restaurant', {restaurant: restaurant})
+      }
       style={[
         stylesRestaurant.restaurantContainer,
         lastRestaurant && stylesRestaurant.lastRestaurant,

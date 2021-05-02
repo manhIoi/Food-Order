@@ -1,18 +1,17 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import rootColor from '../../constants/color';
-function NameRestaurant() {
+function NameRestaurant(props) {
+  const {name, address, distance, nameDetail} = props;
   return (
     <View style={styles.nameRestaurantContainer}>
       <View style={styles.nameRestaurantWrapper}>
-        <Text style={styles.nameRestaurantStrongText}>
-          Nobita Milk Tea And Fast Food
-        </Text>
+        <Text style={styles.nameRestaurantStrongText}>{name}</Text>
         <Text style={styles.nameRestaurantNormalText} numberOfLines={1}>
           <Text style={[styles.nameRestaurantNormalText, {fontWeight: '700'}]}>
-            3.7km{' '}
+            {distance}{' '}
           </Text>
-          - 56 Hoàng Diệu 2, Linh Chiểu , Thủ Đức
+          - {address}
         </Text>
       </View>
       <TouchableHighlight
@@ -61,6 +60,8 @@ const styles = StyleSheet.create({
   nameRestaurantStrongText: {
     fontSize: 20,
     fontWeight: '700',
+    marginBottom: 5,
+    textAlign: 'center',
   },
   nameRestaurantNormalText: {
     fontSize: 15,

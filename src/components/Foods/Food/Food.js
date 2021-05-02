@@ -15,20 +15,20 @@ function Food(props) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      onPress={() => navigation.navigate('Food')}
+      onPress={() => navigation.navigate('Food', {food: food})}
       style={[stylesFood.foodContainer, lastFood && stylesFood.lastFood]}>
       <View style={stylesFood.foodDescription}>
         <Text style={[stylesFood.foodText, stylesFood.foodName]}>
-          {food.foodName}
+          {food.name}
         </Text>
-        <Text style={stylesFood.foodText}>{food.foodPrice}đ</Text>
+        <Text style={stylesFood.foodText}>{food.price}đ</Text>
       </View>
       <View style={stylesFood.foodImageWrapper}>
         <Image
           resizeMode="cover"
           style={stylesFood.foodImage}
           source={{
-            uri: food.foodImage,
+            uri: food.image,
           }}
         />
       </View>

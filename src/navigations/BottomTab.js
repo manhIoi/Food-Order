@@ -16,13 +16,15 @@ function BottomTab() {
       initialRouteName="Home"
       shifting={true}
       activeColor={rootColor.whiteColor}
-      barStyle={{backgroundColor: rootColor.primaryColor}}>
+      inactiveColor="#dddddd"
+      barStyle={{
+        backgroundColor: rootColor.primaryColor,
+      }}>
       <Tab.Screen
         options={{
           tabBarIcon: ({color}) => (
-            <MaterialIcon name="home" color={rootColor.whiteColor} size={26} />
+            <MaterialIcon name="home" color={color} size={26} />
           ),
-          tabBarColor: '#36BFB1',
         }}
         name="Home"
         component={HomeStack}
@@ -31,23 +33,18 @@ function BottomTab() {
         name="Cart"
         component={CartStack}
         options={{
-          tabBarColor: '#8fd9a8',
           tabBarIcon: ({color}) => (
-            <MaterialIcon
-              name="shopping-bag"
-              color={rootColor.whiteColor}
-              size={26}
-            />
+            <MaterialIcon name="shopping-bag" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
         name="Messages"
-        component={MessagesStack}
+        component={MessagesStack} 
         options={{
-          tabBarColor: '#4b778d',
+          tabBarBadge: 2,
           tabBarIcon: ({color}) => (
-            <MaterialIcon name="email" color={rootColor.whiteColor} size={26} />
+            <MaterialIcon name="email" color={color} size={26} />
           ),
         }}
       />

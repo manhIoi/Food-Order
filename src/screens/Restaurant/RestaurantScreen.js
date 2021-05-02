@@ -4,7 +4,9 @@ import Foods from '../../components/Foods/Foods';
 import HeaderRestaurant from '../../components/HeaderRestaurant/HeaderRestaurant';
 import TopNavigation from '../../components/HeaderRestaurant/TopNavigation';
 
-function RestaurantScreen() {
+function RestaurantScreen(props) {
+  const {route} = props;
+  const {restaurant} = route.params;
   const scrollY = useRef(new Animated.Value(0)).current;
   return (
     <View>
@@ -15,8 +17,14 @@ function RestaurantScreen() {
           {useNativeDriver: false},
         )}
         scrollEventThrottle={16}>
-        <HeaderRestaurant scrollY={scrollY} />
-        <Foods />
+        <HeaderRestaurant
+          restaurant={restaurant}
+          image={restaurant.image}
+          scrollY={scrollY}
+        />
+        {/* {restaurant.foodsCategories.map((foods, index) => (
+          <Foods key={index} foods={foods} />
+        ))} */}
       </ScrollView>
     </View>
   );

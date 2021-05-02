@@ -1,15 +1,16 @@
-import React from 'react';
-import {Button, ScrollView} from 'react-native';
-import {View, Text} from 'react-native';
+import React, {useEffect} from 'react';
+import {Button, ScrollView, View, Text} from 'react-native';
+import {useSelector} from 'react-redux';
+
 import CartContainer from '../../components/Cart/CartContainer';
-import CartFoods from '../../components/Cart/CartFoods';
+import CartFood from '../../components/Cart/CartFood';
 import CartHeader from '../../components/Cart/CartHeader';
 import SummaryOrder from '../../components/Cart/SummaryOrder';
 import rootColor from '../../constants/color';
 import demensions from '../../constants/demensions';
 
 function CartScreen(props) {
-  const {navigation} = props;
+  const cart = useSelector(state => state.cart);
   return (
     <View style={{flex: 1, paddingBottom: demensions.orderSummaryH - 10}}>
       <ScrollView>
@@ -17,10 +18,7 @@ function CartScreen(props) {
           <CartHeader />
         </CartContainer>
         <CartContainer header="Đơn hàng của bạn">
-          <CartFoods />
-          <CartFoods />
-          <CartFoods />
-          <CartFoods />
+          {cart && cart.map(food => <CartFood key={food._id} food={food} />)}
         </CartContainer>
       </ScrollView>
       <View
@@ -36,7 +34,7 @@ function CartScreen(props) {
         <CartContainer
           header="Hóa đơn của bạn"
           options={{marginBottom: 0, height: '100%'}}>
-          <SummaryOrder />
+          <SummaryOrder cart={cart} />
         </CartContainer>
       </View>
     </View>

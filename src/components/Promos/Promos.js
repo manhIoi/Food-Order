@@ -11,24 +11,26 @@ function Promos(props) {
     <View style={stylesPromos.promosContainer}>
       <View style={stylesPromos.promosHeader}>
         <Text style={stylesPromos.prmosHeaderStrong}>
-          {promos.headerPromos.headerStrong}
+          {promos.headerStrong}
         </Text>
         <Text style={stylesPromos.prmosHeaderNormal}>
-          {promos.headerPromos.headerNormal}
+          {promos.headerNormal}
         </Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {promos.promos.map(promo => (
+        {promos.listRestaurant.map(restaurant => (
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => navitaion.navigate('Restaurant')}
-            key={promo._id}
+            onPress={() =>
+              navitaion.navigate('Restaurant', {restaurant: restaurant})
+            }
+            key={restaurant._id}
             style={stylesPromos.promoContainer}>
             <Image
               style={stylesPromos.promoImage}
               resizeMode="cover"
               source={{
-                uri: promo.image,
+                uri: restaurant.image,
               }}
             />
             <View style={stylesPromos.promoFooter}>
@@ -37,7 +39,7 @@ function Promos(props) {
                   name="bookmark"
                   style={stylesPromos.promoFooterIcon}
                 />
-                {promo.name}
+                {restaurant.nameStrong}
               </Text>
             </View>
           </TouchableOpacity>

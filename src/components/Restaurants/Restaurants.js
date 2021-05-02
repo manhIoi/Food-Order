@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import Restaurant from './Restaurant/Restaurant';
 import stylesRestaurants from './styles';
+import {LIST_RESTAURANTS} from '../../../data';
 
 const RESTAURANTS = {
   header: 'Sài gòn hôm nay ăn gì?',
@@ -54,22 +55,24 @@ const RESTAURANTS = {
   ],
 };
 
-function Restaurants() {
+function Restaurants(props) {
+  const {listRestaurant} = props;
   return (
     <View style={stylesRestaurants.restaurantsContainer}>
       <View style={stylesRestaurants.restaurantsHeader}>
         <Text style={stylesRestaurants.restaurantsHeaderText}>
-          {RESTAURANTS.header}
+          Quanh đây có gì ngon
         </Text>
       </View>
       <View>
-        {RESTAURANTS.restaurants.map((restaurant, index) => (
-          <Restaurant
-            key={restaurant._id}
-            restaurant={restaurant}
-            lastRestaurant={index === RESTAURANTS.restaurants.length - 1}
-          />
-        ))}
+        {listRestaurant &&
+          listRestaurant.map((restaurant, index) => (
+            <Restaurant
+              key={restaurant._id}
+              restaurant={restaurant}
+              lastRestaurant={index === RESTAURANTS.restaurants.length - 1}
+            />
+          ))}
       </View>
     </View>
   );

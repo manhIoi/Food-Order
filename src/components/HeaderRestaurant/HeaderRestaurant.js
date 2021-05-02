@@ -4,18 +4,22 @@ import NameRestaurant from './NameRestaurant';
 const BANNER_H = 300;
 
 function HeaderRestaurant(props) {
-  const {scrollY} = props;
+  const {scrollY, image, restaurant} = props;
   return (
     <View style={styles.bannerContainer}>
       <Animated.Image
         resizeMode="cover"
         style={styles.banner(scrollY)}
         source={{
-          uri:
-            'https://health.clevelandclinic.org/wp-content/uploads/sites/3/2016/10/foodJointPainRelief-142336977-770x533-1.jpg',
+          uri: image,
         }}
       />
-      <NameRestaurant />
+      <NameRestaurant
+        name={restaurant.nameStrong}
+        nameDetail={restaurant.nameNormal}
+        address={restaurant.address}
+        distance={restaurant.distance}
+      />
     </View>
   );
 }

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 
-function FoodBanner() {
+function FoodBanner(props) {
+  const {image} = props;
   return (
     <View style={styles.foodBannerContainer}>
       <Image
         style={styles.foodBannerImage}
         source={{
-          uri:
-            'http://file.hstatic.net/1000044340/file/cach-lam-tra-sua-truyen-thong-vuong_grande.png',
+          uri: image,
         }}
         resizeMode="cover"
       />

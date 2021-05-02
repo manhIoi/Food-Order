@@ -12,7 +12,7 @@ function SplashScreen() {
           animation="bounceInLeft"
           duration={2000}
           style={styles.splashSloganTextStrong}>
-          Baemin
+          Ffoods
         </Animatable.Text>
         <Animatable.Text
           animation="bounceInRight"
