@@ -15,7 +15,7 @@ function FormOrder(props) {
   const [message, setMessage] = useState('');
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [formOrder, setFormOrder] = useState({
-    _id: food.id,
+    _id: food._id,
     name: food.name,
     image: food.image,
     price: food.price,
@@ -91,7 +91,7 @@ function FormOrder(props) {
           food.options.map((option, index) => (
             <View key={index} style={stylesFormOrder.formOrderSelection}>
               <View style={stylesFormOrder.formOrderSelectionHeader}>
-                <Text>{option.header}</Text>
+                <Text>{option.name}</Text>
               </View>
               <View>
                 {/* Form Option */}
@@ -118,10 +118,10 @@ function FormOrder(props) {
           alignItems: 'center',
         }}>
         <ButtonPrimary
-          contents={['Đặt hàng', '20000đ']}
+          contents={['Đặt hàng']}
           options={{
-            justifyContent: 'space-between',
-            width: '80%',
+            justifyContent: 'center',
+            width: '50%',
             height: 50,
           }}
           outline={true}

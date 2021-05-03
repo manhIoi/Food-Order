@@ -11,6 +11,7 @@ import demensions from '../../constants/demensions';
 
 function CartScreen(props) {
   const cart = useSelector(state => state.cart);
+  console.log(cart);
   return (
     <View style={{flex: 1, paddingBottom: demensions.orderSummaryH - 10}}>
       <ScrollView>

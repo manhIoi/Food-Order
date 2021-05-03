@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View, Text, TextInput, StatusBar} from 'react-native';
 import stylesAuth from './styles';
 import rootColor from '../../constants/color';
@@ -7,8 +7,33 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
+import {useForm, Controller} from 'react-hook-form';
+import Errors from '../../components/Auth/Errors';
+import {callApiRegister} from '../../api/apiUsers';
+
+const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 function SignUpScreen() {
   const navigation = useNavigation();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const onSubmit = async formData => {
+    callApiRegister({
+      name: 'user',
+      email: formData.email,
+      password: formData.password,
+      phoneNumber: formData.phoneNumber,
+    });
+  };
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
   return (
     <View style={stylesAuth.authContainer}>
       <StatusBar backgroundColor={rootColor.primaryColor} />
@@ -32,54 +57,140 @@ function SignUpScreen() {
             <Text>Email</Text>
             <View style={stylesAuth.authFormInput}>
               <MaterialIcon name="face" style={stylesAuth.authIcon} />
-              <TextInput
-                style={{flex: 1, marginHorizontal: 6}}
-                placeholder="Email"
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Email"
+                  />
+                )}
+                name="email"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Email is required',
+                  },
+                  pattern: {
+                    value: re,
+                    message: 'Email is bad formated',
+                  },
+                }}
               />
               <MaterialIcon
                 name="check-circle-outline"
                 style={stylesAuth.authIcon}
               />
             </View>
+            {errors.email && <Errors error={errors.email} />}
           </View>
 
           <View style={{marginBottom: 8}}>
             <Text>Password</Text>
             <View style={stylesAuth.authFormInput}>
               <MaterialIcon name="lock" style={stylesAuth.authIcon} />
-              <TextInput
-                style={{flex: 1, marginHorizontal: 6}}
-                placeholder="Password"
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Email"
+                  />
+                )}
+                name="password"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Password is required',
+                  },
+                  minLength: {
+                    value: 6,
+                    message: 'Password required at lease 6 character',
+                  },
+                }}
               />
               <MaterialIcon name="visibility-off" style={stylesAuth.authIcon} />
             </View>
+            {errors.password && <Errors error={errors.password} />}
           </View>
 
           <View style={{marginBottom: 8}}>
             <Text>Confirm Password</Text>
             <View style={stylesAuth.authFormInput}>
               <MaterialIcon name="lock" style={stylesAuth.authIcon} />
-              <TextInput
-                style={{flex: 1, marginHorizontal: 6}}
-                placeholder="Password"
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Email"
+                  />
+                )}
+                name="confirmPassword"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Confirm password is required',
+                  },
+                }}
               />
               <MaterialIcon name="visibility-off" style={stylesAuth.authIcon} />
             </View>
+            {errors.confirmPassword && (
+              <Errors error={errors.confirmPassword} />
+            )}
           </View>
 
           <View style={{marginBottom: 8}}>
             <Text>Phone Number</Text>
             <View style={stylesAuth.authFormInput}>
               <MaterialIcon name="phone-iphone" style={stylesAuth.authIcon} />
-              <TextInput
-                style={{flex: 1, marginHorizontal: 6}}
-                placeholder="Phone Number"
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Email"
+                  />
+                )}
+                name="phoneNumber"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Phone number is required',
+                  },
+                }}
               />
               <MaterialIcon
                 name="check-circle-outline"
                 style={stylesAuth.authIcon}
               />
             </View>
+            {errors.phoneNumber && <Errors error={errors.phoneNumber} />}
           </View>
         </View>
         {/* End Form Input */}
@@ -88,7 +199,7 @@ function SignUpScreen() {
           <ButtonPrimary
             contents={['Sign Up']}
             options={{width: '60%', height: 50}}
-            callBack={() => alert('you sign up')}
+            callBack={handleSubmit(onSubmit)}
           />
           <ButtonPrimary
             contents={['Sign In']}

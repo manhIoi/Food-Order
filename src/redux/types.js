@@ -4,4 +4,9 @@ const cartActionType = {
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
 };
 
-export {cartActionType};
+const userActionType = {
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+};
+
+export {cartActionType, userActionType};

@@ -31,7 +31,7 @@ function Selection(props) {
             style={{
               justifyContent: 'center',
             }}>
-            <Text>{selection.name}</Text>
+            <Text>{selection.header}</Text>
           </View>
         </View>
         <Text>{selection.price}đ</Text>

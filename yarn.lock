@@ -5489,6 +5489,11 @@ react-devtools-core@^4.6.0:
     shell-quote "^1.6.1"
     ws "^7"
 
+react-hook-form@^7.3.6:
+  version "7.3.6"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.3.6.tgz#21da0f1aff834a9ae9f80a604ebbc28c5b229f79"
+  integrity sha512-3LRjxMDn+CUKZ2G9TA9BgNQXX7M9I8WcE5GkcMNg6eOHa9mFc+uF6rKY9QAKlNNjKhdL1atOmOTVBEj2gJVuEQ==
+
 "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
@@ -5960,6 +5965,11 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-placeholder@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/rn-placeholder/-/rn-placeholder-3.0.3.tgz#98f635b263ee003af2a984eed32d86ade308df35"
+  integrity sha512-EmVeLT8zDcTPilQZ2OHO/IiYUy2gApKGgbshDZBX0C4qxsn0cFATwgwOwyz8O7Vwg1Hul97Ci95hu7d6Js6XMQ==
 
 rsvp@^4.8.4:
   version "4.8.5"

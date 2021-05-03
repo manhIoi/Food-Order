@@ -14,11 +14,13 @@ import BottomTab from './src/navigations/BottomTab';
 import SplashScreen from './src/screens/Splash/SplashScreen';
 import AuthStack from './src/routes/AuthStack';
 import {createStackNavigator} from '@react-navigation/stack';
+import {LogBox} from 'react-native';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  LogBox.ignoreAllLogs();
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

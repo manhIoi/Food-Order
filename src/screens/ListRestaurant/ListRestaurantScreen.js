@@ -10,7 +10,6 @@ import Restaurants from '../../components/Restaurants/Restaurants';
 function ListRestaurantScreen(props) {
   const [listRestaurant, setListRestaurant] = useState([]);
   const {route} = props;
-  console.log(route.params);
   const {cateId, suggestionId, image} = route.params;
 
   useEffect(async () => {

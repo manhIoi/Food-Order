@@ -11,11 +11,11 @@ function Foods(props) {
         <Text style={stylesFoods.foodsHeaderText}>{foods.header}</Text>
       </View>
       <View>
-        {foods.foods.map((food, index) => (
+        {foods.map((food, index) => (
           <Food
-            key={food.id}
+            key={food._id}
             food={food}
-            lastFood={index === foods.foods.length - 1}
+            lastFood={index === foods.length - 1}
           />
         ))}
       </View>
