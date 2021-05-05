@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {IconButton} from 'react-native-paper';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import rootColor from '../../constants/color';
 import {removeFromCart} from '../../redux/actions/cartAction';
 
 function CartFood(props) {
   const {food} = props;
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   return (
     <View style={styles.cartFoodcontainer}>
@@ -22,7 +23,7 @@ function CartFood(props) {
           icon="delete"
           color={rootColor.primaryColor}
           size={20}
-          onPress={() => dispatch(removeFromCart(food))}
+          onPress={() => dispatch(removeFromCart(user._id, food))}
         />
       </View>
     </View>

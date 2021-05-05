@@ -8,10 +8,18 @@ import CartHeader from '../../components/Cart/CartHeader';
 import SummaryOrder from '../../components/Cart/SummaryOrder';
 import rootColor from '../../constants/color';
 import demensions from '../../constants/demensions';
+import {useNavigation} from '@react-navigation/native';
 
 function CartScreen(props) {
+  const navigation = useNavigation();
   const cart = useSelector(state => state.cart);
-  console.log(cart);
+  const user = useSelector(state => state.user);
+  console.log(user);
+  useEffect(() => {
+    if (!user._id) {
+      navigation.navigate('Auth');
+    }
+  }, []);
   return (
     <View style={{flex: 1, paddingBottom: demensions.orderSummaryH - 10}}>
       <ScrollView>
@@ -19,7 +27,8 @@ function CartScreen(props) {
           <CartHeader />
         </CartContainer>
         <CartContainer header="Đơn hàng của bạn">
-          {cart && cart.map(food => <CartFood key={food._id} food={food} />)}
+          {cart.foods &&
+            cart.foods.map(food => <CartFood key={food._id} food={food} />)}
         </CartContainer>
       </ScrollView>
       <View

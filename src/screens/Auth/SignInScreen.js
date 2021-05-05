@@ -11,6 +11,8 @@ import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import Errors from '../../components/Auth/Errors';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/actions/userAction';
+import rootApi from '../../api';
+import {fecthCart} from '../../redux/actions/cartAction';
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -26,7 +28,8 @@ function SignInScreen() {
   const onSubmit = async formData => {
     const res = await dispatch(login(formData));
     if (res.userToken) {
-      navigation.navigate('Cart');
+      await dispatch(fecthCart(res.body._id));
+      navigation.goBack();
     } else {
       alert(res);
     }

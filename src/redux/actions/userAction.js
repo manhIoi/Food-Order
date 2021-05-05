@@ -7,7 +7,7 @@ const login = formData => async dispatch => {
     if (data.userToken) {
       dispatch({
         type: Types.userActionType.LOGIN,
-        payload: data,
+        payload: data.body,
       });
     }
     return data;

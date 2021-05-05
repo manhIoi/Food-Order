@@ -11,13 +11,14 @@ function SummaryOrder(props) {
     <View style={styles.summaryOrderContainer}>
       <View style={styles.summaryOrderMoney}>
         <Text style={styles.summaryOrderText}>
-          {convertMoney(
-            cart.reduce((totalMoney, food) => {
-              let tmp = food.totalPrice * food.quanity;
-              return (totalMoney += tmp);
-            }, 0),
-            'toString',
-          )}{' '}
+          {cart.foods &&
+            convertMoney(
+              cart.foods.reduce((totalMoney, food) => {
+                let tmp = food.totalPrice * food.quanity;
+                return (totalMoney += tmp);
+              }, 0),
+              'toString',
+            )}{' '}
           đ
         </Text>
       </View>

@@ -8,6 +8,12 @@ import {
 import {callSuggestion} from './apiSuggestion';
 import {callApiFoodByRes} from './apiFoods';
 import {callApiRegister, callApiLogin} from './apiUsers';
+import {
+  callApiCart,
+  callApiAddToCart,
+  callApiRemoveFromCart,
+  callApiCreateCart,
+} from '../api/apiCart';
 
 const rootApi = {
   callApiCategories,
@@ -19,6 +25,10 @@ const rootApi = {
   callApiFoodByRes,
   callApiRegister,
   callApiLogin,
+  callApiCart,
+  callApiAddToCart,
+  callApiRemoveFromCart,
+  callApiCreateCart,
 };
 
 export default rootApi;

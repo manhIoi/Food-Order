@@ -10,11 +10,15 @@ import * as Animatable from 'react-native-animatable';
 import {useForm, Controller} from 'react-hook-form';
 import Errors from '../../components/Auth/Errors';
 import {callApiRegister} from '../../api/apiUsers';
+import {useDispatch} from 'react-redux';
+import {login} from '../../redux/actions/userAction';
+import {createCart} from '../../redux/actions/cartAction';
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function SignUpScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
@@ -22,12 +26,22 @@ function SignUpScreen() {
   } = useForm();
 
   const onSubmit = async formData => {
-    callApiRegister({
+    const newUser = await callApiRegister({
       name: 'user',
       email: formData.email,
       password: formData.password,
       phoneNumber: formData.phoneNumber,
     });
+    await Promise.all([
+      dispatch(createCart(newUser.data._id)),
+      dispatch(
+        login({
+          email: formData.email,
+          password: formData.password,
+        }),
+      ),
+    ]);
+    return navigation.navigate('Home');
   };
 
   useEffect(() => {
@@ -106,7 +120,8 @@ function SignUpScreen() {
                     onBlur={onBlur}
                     onChangeText={value => onChange(value)}
                     value={value}
-                    placeholder="Email"
+                    placeholder="Password"
+                    secureTextEntry={true}
                   />
                 )}
                 name="password"
@@ -141,7 +156,8 @@ function SignUpScreen() {
                     onBlur={onBlur}
                     onChangeText={value => onChange(value)}
                     value={value}
-                    placeholder="Email"
+                    placeholder="Confirm Password"
+                    secureTextEntry={true}
                   />
                 )}
                 name="confirmPassword"
@@ -174,7 +190,7 @@ function SignUpScreen() {
                     onBlur={onBlur}
                     onChangeText={value => onChange(value)}
                     value={value}
-                    placeholder="Email"
+                    placeholder="Phone"
                   />
                 )}
                 name="phoneNumber"

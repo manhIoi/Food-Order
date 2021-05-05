@@ -1,14 +1,14 @@
 import callApi from '../utils/callApi';
 
 const callApiRegister = async formData => {
-  console.log(formData);
   const result = await callApi('post', 'users/register', formData);
-  console.log(result);
   return result;
 };
 
 const callApiLogin = async formData => {
+  console.log('login');
   const result = await callApi('post', 'users/login', formData);
+  console.log(result.data);
   return result;
 };
 

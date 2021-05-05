@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {TextInput, View, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import ButtonPrimary from '../Button/ButtonPrimary';
 import Counter from '../FoodAction/Counter';
@@ -14,6 +14,8 @@ function FormOrder(props) {
   const {food} = props;
   const [message, setMessage] = useState('');
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const user = useSelector(state => state.user);
+
   const [formOrder, setFormOrder] = useState({
     _id: food._id,
     name: food.name,
@@ -48,14 +50,20 @@ function FormOrder(props) {
     const totalPrice = food.selected.reduce((currentValue, selection) => {
       return (currentValue += convertMoney(selection.price, 'toNumber'));
     }, convertMoney(food.price, 'toNumber'));
-    dispatch(
-      addToCart({
-        ...food,
-        totalPrice: totalPrice,
-        message: message,
-      }),
-    );
-    return navigation.navigate('Cart');
+
+    if (!user._id) {
+      return navigation.navigate('Auth');
+    } else {
+      console.log(user._id);
+      dispatch(
+        addToCart(user._id, {
+          ...food,
+          totalPrice: totalPrice,
+          message: message,
+        }),
+      );
+      return navigation.navigate('Cart');
+    }
   };
 
   useEffect(() => {
