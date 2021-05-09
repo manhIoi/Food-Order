@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
 import CartScreen from '../screens/Cart/CartScreen';
 import DetailsCartScreen from '../screens/Cart/DetailsCartScreen';
-import {TouchableOpacity, Text} from 'react-native';
 import configOptionsHeader from '../constants/configOptionsHeader';
 import {useNavigation} from '@react-navigation/native';
 const Stack = createStackNavigator();

@@ -16,7 +16,7 @@ function Categories({navigation, categories}) {
           <Image
             resizeMode="center"
             style={stylesCategoris.categoryImage}
-            source={category.image}
+            source={{uri: category.image}}
           />
           <Text style={stylesCategoris.categoryName}>{category.name}</Text>
         </TouchableOpacity>

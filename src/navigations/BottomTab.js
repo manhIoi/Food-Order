@@ -5,8 +5,9 @@ import HomeStack from '../routes/HomeStack';
 import CartStack from '../routes/CartStack';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import rootColor from '../constants/color';
-import AuthStack from '../routes/AuthStack';
 import MessagesStack from '../routes/MessagesStack';
+import ProfileScreen from '../screens/Profile/ProfileScreen';
+import ProfileStack from '../routes/ProfileStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -40,11 +41,20 @@ function BottomTab() {
       />
       <Tab.Screen
         name="Messages"
-        component={MessagesStack} 
+        component={MessagesStack}
         options={{
           tabBarBadge: 2,
           tabBarIcon: ({color}) => (
             <MaterialIcon name="email" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={ProfileStack}
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialIcon name="person" color={color} size={26} />
           ),
         }}
       />
