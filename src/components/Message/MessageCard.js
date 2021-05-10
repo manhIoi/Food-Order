@@ -2,25 +2,29 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import stylesCard from './styles';
 
-function MessageCard() {
+function MessageCard(props) {
+  const {message} = props;
   return (
     <View style={stylesCard.messageCard}>
       <View style={stylesCard.messageCardTitle}>
-        <Text style={stylesCard.messageCardTitleText}>Đơn hàng của bạn</Text>
+        <Text style={stylesCard.messageCardTitleText}>{message.name}</Text>
       </View>
       <View style={stylesCard.messageCardContent}>
         <Text numberOfLines={6} style={stylesCard.messageCardContentText}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit,
-          veritatis. Facilis sit dolorum reiciendis? Necessitatibus repellat
-          fuga sapiente, in ut culpa. Rerum atque ipsa facere velit quia
-          incidunt dolor quibusdam? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Eius quaerat reiciendis ex totam nam excepturi
-          pariatur, amet mollitia quo tenetur quos incidunt architecto qui autem
-          dolore atque! Quod, id officia!
+          {message.message && message.message + '\n'}
+          Trạng thái: {message.status + '\n'}
+          Giao đến: {message.address + '\n'}
+          Giá tiền đơn hàng: {message.totalMoney}
+        </Text>
+        <Text style={stylesCard.messageCardContentTextStrong}>
+          Nhấn để xem chi tiết đơn hàng
         </Text>
       </View>
       <View style={stylesCard.messageCardFooter}>
-        <Text style={stylesCard.messageCardFooterText}>21:27 24/04/2021</Text>
+        <Text style={stylesCard.messageCardFooterText}>{message.date}</Text>
+        <Text style={stylesCard.messageCardFooterTextSecondary}>
+          {message.isRead ? 'Đã xem' : 'new'}
+        </Text>
       </View>
     </View>
   );

@@ -14,6 +14,7 @@ import {
   callApiRemoveFromCart,
   callApiCreateCart,
 } from '../api/apiCart';
+import {callApiMessOrder} from './apiMessOrder';
 
 const rootApi = {
   callApiCategories,
@@ -29,6 +30,7 @@ const rootApi = {
   callApiAddToCart,
   callApiRemoveFromCart,
   callApiCreateCart,
+  callApiMessOrder,
 };
 
 export default rootApi;

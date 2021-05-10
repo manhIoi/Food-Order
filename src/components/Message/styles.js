@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   messageCard: {
     backgroundColor: rootColor.whiteColor,
     width: '80%',
-    height: 200,
+    // height: 200,
     marginTop: 15,
     borderRadius: 12,
     shadowColor: '#000',
@@ -32,12 +32,25 @@ const styles = StyleSheet.create({
   },
   messageCardContentText: {
     color: rootColor.textBlack,
+    lineHeight: 22,
+  },
+  messageCardContentTextStrong: {
+    color: rootColor.textLightGray,
+    lineHeight: 22,
+    fontWeight: 'bold',
   },
   messageCardFooter: {
-    padding: 8,
+    paddingBottom: 8,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   messageCardFooterText: {
     color: rootColor.primaryColor,
+    fontWeight: 'bold',
+  },
+  messageCardFooterTextSecondary: {
+    color: rootColor.redPrimaryColor,
     fontWeight: 'bold',
   },
 });

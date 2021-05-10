@@ -13,6 +13,7 @@ import {callApiRegister} from '../../api/apiUsers';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/actions/userAction';
 import {createCart} from '../../redux/actions/cartAction';
+import {ScrollView} from 'react-native';
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -27,7 +28,7 @@ function SignUpScreen() {
 
   const onSubmit = async formData => {
     const newUser = await callApiRegister({
-      name: 'user',
+      name: formData.name,
       email: formData.email,
       password: formData.password,
       phoneNumber: formData.phoneNumber,
@@ -66,11 +67,45 @@ function SignUpScreen() {
         style={[stylesAuth.authForm, {flex: 4}]}>
         <Text style={stylesAuth.authFormHeader}>Sign Up</Text>
         {/* Form Input */}
-        <View style={stylesAuth.authFormWrapper}>
+        <ScrollView style={stylesAuth.authFormWrapper}>
+          <View style={{marginBottom: 8}}>
+            <Text>Name</Text>
+            <View style={stylesAuth.authFormInput}>
+              <MaterialIcon name="face" style={stylesAuth.authIcon} />
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Name"
+                  />
+                )}
+                name="name"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Name is required',
+                  },
+                }}
+              />
+              <MaterialIcon
+                name="check-circle-outline"
+                style={stylesAuth.authIcon}
+              />
+            </View>
+            {errors.name && <Errors error={errors.name} />}
+          </View>
+
           <View style={{marginBottom: 8}}>
             <Text>Email</Text>
             <View style={stylesAuth.authFormInput}>
-              <MaterialIcon name="face" style={stylesAuth.authIcon} />
+              <MaterialIcon name="email" style={stylesAuth.authIcon} />
               <Controller
                 control={control}
                 render={({field: {onChange, onBlur, value}}) => (
@@ -208,7 +243,41 @@ function SignUpScreen() {
             </View>
             {errors.phoneNumber && <Errors error={errors.phoneNumber} />}
           </View>
-        </View>
+
+          <View style={{marginBottom: 8}}>
+            <Text>Address</Text>
+            <View style={stylesAuth.authFormInput}>
+              <MaterialIcon name="home" style={stylesAuth.authIcon} />
+              <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={{
+                      flex: 1,
+                      marginHorizontal: 6,
+                    }}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    placeholder="Address"
+                  />
+                )}
+                name="address"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Address is required',
+                  },
+                }}
+              />
+              <MaterialIcon
+                name="check-circle-outline"
+                style={stylesAuth.authIcon}
+              />
+            </View>
+            {errors.address && <Errors error={errors.address} />}
+          </View>
+        </ScrollView>
         {/* End Form Input */}
         {/* Form Action */}
         <View style={stylesAuth.authFormAction}>
