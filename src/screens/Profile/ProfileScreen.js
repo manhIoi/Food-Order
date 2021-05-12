@@ -3,18 +3,20 @@ import {View, Text, Alert} from 'react-native';
 import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import stylesProfile from './styles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import rootColor from '../../constants/color';
 import {TouchableOpacity} from 'react-native';
+import {logout} from '../../redux/actions/userAction';
 
 function ProfileScreen() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   console.log(user);
 
   const handleLogout = () => {
-    Alert.alert('Bạn chắc chắn muốn thoát');
+    dispatch(logout());
   };
 
   return (

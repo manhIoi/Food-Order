@@ -32,22 +32,24 @@ function SignUpScreen() {
       email: formData.email,
       password: formData.password,
       phoneNumber: formData.phoneNumber,
+      address: formData.address,
     });
-    await Promise.all([
-      dispatch(createCart(newUser.data._id)),
-      dispatch(
-        login({
-          email: formData.email,
-          password: formData.password,
-        }),
-      ),
-    ]);
-    return navigation.navigate('Home');
+    if (!newUser.data._id) {
+      alert(newUser.data);
+    } else {
+      const data = await Promise.all([
+        dispatch(createCart(newUser.data._id)),
+        dispatch(
+          login({
+            email: formData.email,
+            password: formData.password,
+          }),
+        ),
+      ]);
+      console.log(data);
+      return navigation.navigate('Home');
+    }
   };
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
 
   return (
     <View style={stylesAuth.authContainer}>

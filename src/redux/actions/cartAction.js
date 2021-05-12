@@ -34,6 +34,8 @@ const createCart = idUser => async dispatch => {
 const addToCart = (idUser, food) => async dispatch => {
   try {
     const {data} = await rootApi.callApiAddToCart(idUser, food);
+    console.log(data);
+    console.log(food);
     if (data) {
       return dispatch({
         type: Types.cartActionType.ADD_TO_CART,
