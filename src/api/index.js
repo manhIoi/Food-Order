@@ -7,14 +7,20 @@ import {
 } from './apiRestaurant';
 import {callSuggestion} from './apiSuggestion';
 import {callApiFoodByRes} from './apiFoods';
-import {callApiRegister, callApiLogin} from './apiUsers';
+import {
+  callApiRegister,
+  callApiLogin,
+  callApiUpdateUser,
+  callApiCheckPassword,
+  callApiUpdatePassword,
+} from './apiUsers';
 import {
   callApiCart,
   callApiAddToCart,
   callApiRemoveFromCart,
   callApiCreateCart,
 } from '../api/apiCart';
-import {callApiMessOrder} from './apiMessOrder';
+import {callApiMessOrder, callApiCreateMessOrder} from './apiMessOrder';
 
 const rootApi = {
   callApiCategories,
@@ -31,6 +37,10 @@ const rootApi = {
   callApiRemoveFromCart,
   callApiCreateCart,
   callApiMessOrder,
+  callApiCreateMessOrder,
+  callApiUpdateUser,
+  callApiCheckPassword,
+  callApiUpdatePassword,
 };
 
 export default rootApi;

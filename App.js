@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {login} from './src/redux/actions/userAction';
 import {fecthCart} from './src/redux/actions/cartAction';
+import {fecthMessOrder} from './src/redux/actions/messOrderAction';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const App = () => {
       console.log(userObj);
       await dispatch(login({email: userObj.email, password: userObj.password}));
       await dispatch(fecthCart(userObj._id));
+      await dispatch(fecthMessOrder(userObj._id));
     } else {
       console.log('dont working');
     }

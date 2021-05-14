@@ -27,6 +27,10 @@ const cartReducer = (state = {}, action) => {
       };
       return cloneState;
     }
+
+    case Types.cartActionType.CART_USER_LOGOUT: {
+      return {};
+    }
     default:
       return state;
   }

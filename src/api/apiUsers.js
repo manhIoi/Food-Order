@@ -12,4 +12,37 @@ const callApiLogin = async formData => {
   return result;
 };
 
-export {callApiRegister, callApiLogin};
+const callApiUpdateUser = async (idUser, formData) => {
+  const result = await callApi('put', `users/update/${idUser}`, formData);
+  console.log(result);
+  console.log(result.data);
+
+  return result.data;
+};
+
+const callApiCheckPassword = async (idUser, formData) => {
+  const result = await callApi(
+    'put',
+    `users/update-password/check/${idUser}`,
+    formData,
+  );
+  console.log(result);
+  return result.data;
+};
+
+const callApiUpdatePassword = async (idUser, formData) => {
+  const result = await callApi(
+    'put',
+    `users/update-password/change/${idUser}`,
+    formData,
+  );
+  return result.data;
+};
+
+export {
+  callApiRegister,
+  callApiLogin,
+  callApiUpdateUser,
+  callApiCheckPassword,
+  callApiUpdatePassword,
+};

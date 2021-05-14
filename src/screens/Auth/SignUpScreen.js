@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Text, TextInput, StatusBar} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, StatusBar, ScrollView} from 'react-native';
 import stylesAuth from './styles';
 import rootColor from '../../constants/color';
 import ButtonPrimary from '../../components/Button/ButtonPrimary';
@@ -13,11 +13,14 @@ import {callApiRegister} from '../../api/apiUsers';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/actions/userAction';
 import {createCart} from '../../redux/actions/cartAction';
-import {ScrollView} from 'react-native';
+import {IconButton} from 'react-native-paper';
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function SignUpScreen() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isShowPass, setIsShowPass] = useState(false);
+  const [isShowConfirmPass, setIsShowConfirmPass] = useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {
@@ -27,14 +30,16 @@ function SignUpScreen() {
   } = useForm();
 
   const onSubmit = async formData => {
+    console.log(formData);
+    setIsLoading(true);
     const newUser = await callApiRegister({
       name: formData.name,
       email: formData.email,
       password: formData.password,
       phoneNumber: formData.phoneNumber,
-      address: formData.address,
     });
     if (!newUser.data._id) {
+      setIsLoading(false);
       alert(newUser.data);
     } else {
       const data = await Promise.all([
@@ -96,10 +101,6 @@ function SignUpScreen() {
                   },
                 }}
               />
-              <MaterialIcon
-                name="check-circle-outline"
-                style={stylesAuth.authIcon}
-              />
             </View>
             {errors.name && <Errors error={errors.name} />}
           </View>
@@ -134,10 +135,6 @@ function SignUpScreen() {
                   },
                 }}
               />
-              <MaterialIcon
-                name="check-circle-outline"
-                style={stylesAuth.authIcon}
-              />
             </View>
             {errors.email && <Errors error={errors.email} />}
           </View>
@@ -158,7 +155,7 @@ function SignUpScreen() {
                     onChangeText={value => onChange(value)}
                     value={value}
                     placeholder="Password"
-                    secureTextEntry={true}
+                    secureTextEntry={!isShowPass}
                   />
                 )}
                 name="password"
@@ -173,7 +170,16 @@ function SignUpScreen() {
                   },
                 }}
               />
-              <MaterialIcon name="visibility-off" style={stylesAuth.authIcon} />
+              <IconButton
+                icon="eye"
+                color={
+                  !isShowPass
+                    ? rootColor.grayPrimaryColor
+                    : rootColor.primaryColor
+                }
+                size={22}
+                onPress={() => setIsShowPass(!isShowPass)}
+              />
             </View>
             {errors.password && <Errors error={errors.password} />}
           </View>
@@ -194,7 +200,7 @@ function SignUpScreen() {
                     onChangeText={value => onChange(value)}
                     value={value}
                     placeholder="Confirm Password"
-                    secureTextEntry={true}
+                    secureTextEntry={!isShowConfirmPass}
                   />
                 )}
                 name="confirmPassword"
@@ -205,7 +211,16 @@ function SignUpScreen() {
                   },
                 }}
               />
-              <MaterialIcon name="visibility-off" style={stylesAuth.authIcon} />
+              <IconButton
+                icon="eye"
+                color={
+                  !isShowConfirmPass
+                    ? rootColor.grayPrimaryColor
+                    : rootColor.primaryColor
+                }
+                size={22}
+                onPress={() => setIsShowConfirmPass(!isShowConfirmPass)}
+              />
             </View>
             {errors.confirmPassword && (
               <Errors error={errors.confirmPassword} />
@@ -238,53 +253,15 @@ function SignUpScreen() {
                   },
                 }}
               />
-              <MaterialIcon
-                name="check-circle-outline"
-                style={stylesAuth.authIcon}
-              />
             </View>
             {errors.phoneNumber && <Errors error={errors.phoneNumber} />}
-          </View>
-
-          <View style={{marginBottom: 8}}>
-            <Text>Address</Text>
-            <View style={stylesAuth.authFormInput}>
-              <MaterialIcon name="home" style={stylesAuth.authIcon} />
-              <Controller
-                control={control}
-                render={({field: {onChange, onBlur, value}}) => (
-                  <TextInput
-                    style={{
-                      flex: 1,
-                      marginHorizontal: 6,
-                    }}
-                    onBlur={onBlur}
-                    onChangeText={value => onChange(value)}
-                    value={value}
-                    placeholder="Address"
-                  />
-                )}
-                name="address"
-                rules={{
-                  required: {
-                    value: true,
-                    message: 'Address is required',
-                  },
-                }}
-              />
-              <MaterialIcon
-                name="check-circle-outline"
-                style={stylesAuth.authIcon}
-              />
-            </View>
-            {errors.address && <Errors error={errors.address} />}
           </View>
         </ScrollView>
         {/* End Form Input */}
         {/* Form Action */}
         <View style={stylesAuth.authFormAction}>
           <ButtonPrimary
-            contents={['Sign Up']}
+            contents={[`${!isLoading ? 'Sign Up' : 'ActivityIndicator'}`]}
             options={{width: '60%', height: 50}}
             callBack={handleSubmit(onSubmit)}
           />

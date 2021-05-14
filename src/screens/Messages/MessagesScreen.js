@@ -1,24 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import MessageCard from '../../components/Message/MessageCard';
-import rootApi from '../../api/index';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native';
+import {fecthMessOrder} from '../../redux/actions/messOrderAction';
 
 function MessagesScreen() {
-  const [messages, setMessages] = useState([]);
+  const messages = useSelector(state => state.messOrder);
   const navigation = useNavigation();
   const user = useSelector(state => state.user);
-  console.log(messages);
-  useEffect(async () => {
-    if (user._id) {
-      const messOrder = await rootApi.callApiMessOrder(user._id);
-      setMessages(messOrder);
-    }
-  }, [user]);
   return (
     <ScrollView style={{backgroundColor: '#fff'}}>
       {user._id ? (

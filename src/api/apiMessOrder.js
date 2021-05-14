@@ -6,4 +6,9 @@ const callApiMessOrder = async idUser => {
   return body.data;
 };
 
-export {callApiMessOrder};
+const callApiCreateMessOrder = async data => {
+  const body = await callApi('post', `mess-order/create`, data);
+  return body.data;
+};
+
+export {callApiMessOrder, callApiCreateMessOrder};

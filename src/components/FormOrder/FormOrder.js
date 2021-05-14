@@ -54,7 +54,6 @@ function FormOrder(props) {
     if (!user._id) {
       return navigation.navigate('Auth');
     } else {
-      console.log(user._id);
       dispatch(
         addToCart(user._id, {
           ...food,
@@ -62,7 +61,7 @@ function FormOrder(props) {
           message: message,
         }),
       );
-      return navigation.navigate('Cart');
+      alert('Sản phẩm được thêm');
     }
   };
 
@@ -81,9 +80,11 @@ function FormOrder(props) {
           <Text numberOfLines={2} style={stylesFormOrder.formOrderTextStrong}>
             {food.name}
           </Text>
-          <Text style={stylesFormOrder.formOrderTextNormal}>{food.price}</Text>
+          <Text style={stylesFormOrder.formOrderTextNormal}>
+            {food.price} đ
+          </Text>
         </View>
-        <Text style={stylesFormOrder.formOrderTextNormal}>Description</Text>
+        <Text style={stylesFormOrder.formOrderTextNormal}>Chi tiết món ăn</Text>
         <TextInput
           style={stylesFormOrder.formOrderInput}
           placeholder="Lời nhắn cho cửa hàng"
@@ -126,7 +127,7 @@ function FormOrder(props) {
           alignItems: 'center',
         }}>
         <ButtonPrimary
-          contents={['Đặt hàng']}
+          contents={['Thêm vào giỏ hàng']}
           options={{
             justifyContent: 'center',
             width: '50%',

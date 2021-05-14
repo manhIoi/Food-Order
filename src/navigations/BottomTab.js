@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
 import HomeStack from '../routes/HomeStack';
@@ -6,12 +6,15 @@ import CartStack from '../routes/CartStack';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import rootColor from '../constants/color';
 import MessagesStack from '../routes/MessagesStack';
-import ProfileScreen from '../screens/Profile/ProfileScreen';
 import ProfileStack from '../routes/ProfileStack';
+import {useSelector} from 'react-redux';
 
 const Tab = createMaterialBottomTabNavigator();
 
 function BottomTab() {
+  const messOrder = useSelector(state => state.messOrder);
+  const cart = useSelector(state => state.cart);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -34,6 +37,7 @@ function BottomTab() {
         name="Cart"
         component={CartStack}
         options={{
+          tabBarBadge: cart.foods && cart.foods.length > 0 && cart.foods.length,
           tabBarIcon: ({color}) => (
             <MaterialIcon name="shopping-bag" color={color} size={26} />
           ),
@@ -43,7 +47,7 @@ function BottomTab() {
         name="Messages"
         component={MessagesStack}
         options={{
-          tabBarBadge: 2,
+          tabBarBadge: messOrder && messOrder.length > 0 && messOrder.length,
           tabBarIcon: ({color}) => (
             <MaterialIcon name="email" color={color} size={26} />
           ),

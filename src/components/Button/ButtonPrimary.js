@@ -1,5 +1,10 @@
 import React from 'react';
-import {StyleSheet, TouchableHighlight, Text} from 'react-native';
+import {
+  StyleSheet,
+  TouchableHighlight,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import rootColor from '../../constants/color';
 
 function ButtonPrimary(props) {
@@ -16,20 +21,28 @@ function ButtonPrimary(props) {
       ]}>
       <>
         {contents &&
-          contents.map((content, index) => (
-            <Text
-              key={index}
-              style={[
-                styles.textButton,
-                {
-                  color: outline
-                    ? rootColor.primaryColor
-                    : rootColor.whiteColor,
-                },
-              ]}>
-              {content}
-            </Text>
-          ))}
+          contents.map((content, index) => {
+            if (content !== 'ActivityIndicator') {
+              return (
+                <Text
+                  key={index}
+                  style={[
+                    styles.textButton,
+                    {
+                      color: outline
+                        ? rootColor.primaryColor
+                        : rootColor.whiteColor,
+                    },
+                  ]}>
+                  {content}
+                </Text>
+              );
+            } else {
+              return (
+                <ActivityIndicator color={rootColor.whiteColor} size="small" />
+              );
+            }
+          })}
       </>
     </TouchableHighlight>
   );

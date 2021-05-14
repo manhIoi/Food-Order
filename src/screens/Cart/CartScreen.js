@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
@@ -14,7 +14,7 @@ function CartScreen(props) {
   const navigation = useNavigation();
   const cart = useSelector(state => state.cart);
   const user = useSelector(state => state.user);
-  console.log(user);
+  const [inputAddress, setInputAddress] = useState('');
   useEffect(() => {
     if (!user._id) {
       navigation.navigate('Auth');
@@ -24,7 +24,10 @@ function CartScreen(props) {
     <View style={{flex: 1, paddingBottom: demensions.orderSummaryH - 10}}>
       <ScrollView>
         <CartContainer header="Giao hàng đến">
-          <CartHeader />
+          <CartHeader
+            inputAddress={inputAddress}
+            setInputAddress={setInputAddress}
+          />
         </CartContainer>
         <CartContainer header="Đơn hàng của bạn">
           {cart.foods &&
@@ -44,7 +47,7 @@ function CartScreen(props) {
         <CartContainer
           header="Hóa đơn của bạn"
           options={{marginBottom: 0, height: '100%'}}>
-          <SummaryOrder cart={cart} />
+          <SummaryOrder inputAddress={inputAddress} cart={cart} />
         </CartContainer>
       </View>
     </View>

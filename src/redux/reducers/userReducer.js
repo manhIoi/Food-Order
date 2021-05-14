@@ -7,6 +7,18 @@ const userReducer = (state = {}, action) => {
     case Types.userActionType.LOGOUT:
       state = action.payload;
       return state;
+    case Types.userActionType.CHANGE_PASSWORD:
+      state = {
+        ...state,
+        password: action.payload,
+      };
+      return state;
+    case Types.userActionType.UPDATE_USER:
+      state = {
+        ...state,
+        ...action.payload,
+      };
+      return state;
     default:
       return state;
   }

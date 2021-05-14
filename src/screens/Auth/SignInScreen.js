@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, StatusBar, TextInput, Button} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, StatusBar, TextInput} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
@@ -12,12 +12,14 @@ import Errors from '../../components/Auth/Errors';
 import {useDispatch} from 'react-redux';
 import {login} from '../../redux/actions/userAction';
 import {fecthCart} from '../../redux/actions/cartAction';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {IconButton} from 'react-native-paper';
 
 const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 function SignInScreen() {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isShowPass, setIsShowPass] = useState(false);
   const dispatch = useDispatch();
   const {
     control,
@@ -26,11 +28,13 @@ function SignInScreen() {
   } = useForm();
 
   const onSubmit = async formData => {
+    setIsLoading(true);
     const res = await dispatch(login(formData));
     if (res.userToken) {
       await dispatch(fecthCart(res.body._id));
       navigation.goBack();
     } else {
+      setIsLoading(false);
       alert(res);
     }
   };
@@ -92,10 +96,6 @@ function SignInScreen() {
                   },
                 }}
               />
-              <MaterialIcon
-                name="check-circle-outline"
-                style={stylesAuth.authIcon}
-              />
             </View>
             {errors.email && <Errors error={errors.email} />}
           </View>
@@ -116,7 +116,7 @@ function SignInScreen() {
                     onChangeText={value => onChange(value)}
                     value={value}
                     placeholder="Email"
-                    secureTextEntry={true}
+                    secureTextEntry={!isShowPass}
                   />
                 )}
                 name="password"
@@ -132,7 +132,16 @@ function SignInScreen() {
                   },
                 }}
               />
-              <MaterialIcon name="visibility-off" style={stylesAuth.authIcon} />
+              <IconButton
+                icon="eye"
+                color={
+                  !isShowPass
+                    ? rootColor.grayPrimaryColor
+                    : rootColor.primaryColor
+                }
+                size={22}
+                onPress={() => setIsShowPass(!isShowPass)}
+              />
             </View>
             {errors.password && <Errors error={errors.password} />}
           </View>
@@ -143,7 +152,7 @@ function SignInScreen() {
         {/* Form Action */}
         <View style={stylesAuth.authFormAction}>
           <ButtonPrimary
-            contents={['Sign In']}
+            contents={[`${!isLoading ? 'Sign In' : 'ActivityIndicator'}`]}
             options={{width: '60%', height: 50}}
             callBack={handleSubmit(onSubmit)}
           />

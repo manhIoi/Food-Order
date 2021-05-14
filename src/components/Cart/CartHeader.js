@@ -1,16 +1,25 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Input} from 'react-native-elements';
 import rootColor from '../../constants/color';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-function CartHeader() {
+function CartHeader({inputAddress, setInputAddress}) {
   return (
     <View style={styles.container}>
-      <Text numberOfLines={2} style={styles.headerText}>
-        Ktx Khu B, Đông Hòa, Dĩ An, Bình Dương
-      </Text>
-      <TouchableOpacity style={styles.headerBtn}>
-        <Text style={styles.headerTextBtn}>Thay đổi</Text>
-      </TouchableOpacity>
+      <Input
+        inputContainerStyle={styles.inputAddress}
+        style={{fontSize: 14, color: rootColor.primaryColor}}
+        placeholder="Nhập địa chỉ giao hàng"
+        onChangeText={value => setInputAddress(value)}
+        rightIcon={
+          <MaterialIcon
+            name="location-on"
+            size={20}
+            color={rootColor.primaryColor}
+          />
+        }
+      />
     </View>
   );
 }
@@ -19,17 +28,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
-  headerText: {
-    color: rootColor.grayPrimaryColor,
-    flex: 3,
-  },
-  headerBtn: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerTextBtn: {
-    color: rootColor.primaryColor,
+  inputAddress: {
+    width: '100%',
+    height: 30,
   },
 });
 
