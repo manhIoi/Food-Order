@@ -11,6 +11,7 @@ function CartHeader({inputAddress, setInputAddress}) {
         inputContainerStyle={styles.inputAddress}
         style={{fontSize: 14, color: rootColor.primaryColor}}
         placeholder="Nhập địa chỉ giao hàng"
+        value={inputAddress}
         onChangeText={value => setInputAddress(value)}
         rightIcon={
           <MaterialIcon

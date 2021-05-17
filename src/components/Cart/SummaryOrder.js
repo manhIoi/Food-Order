@@ -5,9 +5,10 @@ import {useNavigation} from '@react-navigation/native';
 import convertMoney from '../../utils/convertMoney';
 import {useDispatch, useSelector} from 'react-redux';
 import {createMessOrder} from '../../redux/actions/messOrderAction';
+import {clearCart} from '../../redux/actions/cartAction';
 
 function SummaryOrder(props) {
-  const {cart, inputAddress} = props;
+  const {cart, inputAddress, setInputAddress} = props;
   const navigation = useNavigation();
   const user = useSelector(state => state.user);
   const lengthMessOrder = useSelector(state => state.messOrder.length);
@@ -17,6 +18,7 @@ function SummaryOrder(props) {
       if (!inputAddress) {
         alert('Your address is empty ! Please fill it ^_^');
       } else {
+        setInputAddress('');
         await dispatch(
           createMessOrder({
             idUser: user._id,
@@ -33,6 +35,7 @@ function SummaryOrder(props) {
             ),
           }),
         );
+        await dispatch(clearCart(user._id));
         navigation.navigate('Messages');
       }
     } else {

@@ -47,7 +47,11 @@ function CartScreen(props) {
         <CartContainer
           header="Hóa đơn của bạn"
           options={{marginBottom: 0, height: '100%'}}>
-          <SummaryOrder inputAddress={inputAddress} cart={cart} />
+          <SummaryOrder
+            inputAddress={inputAddress}
+            setInputAddress={setInputAddress}
+            cart={cart}
+          />
         </CartContainer>
       </View>
     </View>

@@ -11,6 +11,7 @@ import {HomePlaceHolder} from '../../components/Placeholder/index';
 
 function HomeScreen(props) {
   const [categories, setCategories] = useState([]);
+  const [banners, setBanners] = useState([]);
   const [listPromos, setListPromos] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
@@ -29,12 +30,14 @@ function HomeScreen(props) {
         rootApi.callApiPromos(),
         rootApi.callSuggestion(),
         rootApi.callApiRestaurant(),
+        rootApi.callApiBanner(),
       ]);
 
       setCategories(data[0]);
       setListPromos(data[1]);
       setSuggestions(data[2]);
       setRestaurants(data[3]);
+      setBanners(data[4]);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -47,7 +50,7 @@ function HomeScreen(props) {
         <HomePlaceHolder />
       ) : (
         <>
-          <Banner />
+          <Banner banners={banners} />
           <Categories categories={categories} navigation={navigation} />
           {/* Promos */}
           {listPromos &&

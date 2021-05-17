@@ -4,6 +4,7 @@ const cartActionType = {
   ADD_TO_CART: 'ADD_TO_CART',
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
   CART_USER_LOGOUT: 'CART_USER_LOGOUT',
+  CLEAR_CART: 'CLEAR_CART',
 };
 
 const userActionType = {

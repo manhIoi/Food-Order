@@ -28,6 +28,13 @@ const cartReducer = (state = {}, action) => {
       return cloneState;
     }
 
+    case Types.cartActionType.CLEAR_CART: {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
+
     case Types.cartActionType.CART_USER_LOGOUT: {
       return {};
     }

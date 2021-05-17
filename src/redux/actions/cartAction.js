@@ -62,4 +62,19 @@ const removeFromCart = (idUser, food) => async dispatch => {
   }
 };
 
-export {fecthCart, addToCart, removeFromCart, createCart};
+const clearCart = idUser => async dispatch => {
+  try {
+    const {data} = await rootApi.callApiClearCart(idUser);
+    console.log(data);
+    if (data.foods) {
+      return dispatch({
+        type: Types.cartActionType.CLEAR_CART,
+        payload: data,
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export {fecthCart, addToCart, removeFromCart, createCart, clearCart};

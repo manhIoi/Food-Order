@@ -4,11 +4,9 @@ const styles = StyleSheet.create({
   bannerContainer: {
     width: '100%',
     height: 200,
-    paddingHorizontal: 10,
-    paddingVertical: 3,
     overflow: 'hidden',
     borderRadius: 6,
-    marginVertical: 4,
+    marginBottom: 10,
   },
   bannerImage: {
     width: '100%',

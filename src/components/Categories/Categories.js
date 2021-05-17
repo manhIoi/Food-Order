@@ -10,7 +10,10 @@ function Categories({navigation, categories}) {
         <TouchableOpacity
           key={category._id}
           onPress={() =>
-            navigation.navigate('ListRestaurant', {cateId: category._id})
+            navigation.navigate('ListRestaurant', {
+              cateId: category._id,
+              image: category.imageBanner,
+            })
           }
           style={stylesCategoris.categoryWrapper}>
           <Image

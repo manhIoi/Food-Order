@@ -16,9 +16,15 @@ const callApiCreateCart = async idUser => {
   return await callApi('post', 'carts/create', {_idUser: idUser});
 };
 
+const callApiClearCart = async idUser => {
+  const body = await callApi('put', `carts/clear/${idUser}`);
+  return body;
+};
+
 export {
   callApiCart,
   callApiAddToCart,
   callApiRemoveFromCart,
   callApiCreateCart,
+  callApiClearCart,
 };

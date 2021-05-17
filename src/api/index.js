@@ -19,8 +19,10 @@ import {
   callApiAddToCart,
   callApiRemoveFromCart,
   callApiCreateCart,
+  callApiClearCart,
 } from '../api/apiCart';
 import {callApiMessOrder, callApiCreateMessOrder} from './apiMessOrder';
+import {callApiBanner} from './apiBanner';
 
 const rootApi = {
   callApiCategories,
@@ -33,6 +35,7 @@ const rootApi = {
   callApiRegister,
   callApiLogin,
   callApiCart,
+  callApiClearCart,
   callApiAddToCart,
   callApiRemoveFromCart,
   callApiCreateCart,
@@ -41,6 +44,7 @@ const rootApi = {
   callApiUpdateUser,
   callApiCheckPassword,
   callApiUpdatePassword,
+  callApiBanner,
 };
 
 export default rootApi;
