@@ -34,6 +34,16 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     padding: 8,
+    zIndex: 1,
+  },
+  hightLight: {
+    position: 'absolute',
+    bottom: 0,
+    top: '50%',
+    left: 0,
+    right: 0,
+    opacity: 0.8,
+    zIndex: 0,
   },
   suggestTextStrong: {
     color: rootColor.whiteColor,

@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Image, ScrollView, Text, View, TouchableOpacity} from 'react-native';
 import stylesSuggestions from './styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 function RestaurantSuggestions(props) {
   const {restaurantSuggestions} = props;
@@ -43,6 +44,9 @@ function RestaurantSuggestions(props) {
                 {suggestion.normalText}
               </Text>
             </View>
+            <LinearGradient
+              colors={['#0000', '#000000']}
+              style={stylesSuggestions.hightLight}></LinearGradient>
           </TouchableOpacity>
         ))}
       </ScrollView>
