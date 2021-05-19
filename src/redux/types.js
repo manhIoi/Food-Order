@@ -18,6 +18,7 @@ const messOrderActionType = {
   FECTH_MESS_ORDER: 'FECTH_MESS_ORDER',
   CREATE_MESS_ORDER: 'CREATE_MESS_ORDER',
   MESSORDER_USER_LOGOUT: 'MESSORDER_USER_LOGOUT',
+  READ_MESS_ORDER: 'READ_MESS_ORDER',
 };
 
 export {cartActionType, userActionType, messOrderActionType};

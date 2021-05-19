@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     top: '50%',
     left: 0,
     right: 0,
-    opacity: 0.8,
+    opacity: 0.5,
     zIndex: 0,
   },
   suggestTextStrong: {

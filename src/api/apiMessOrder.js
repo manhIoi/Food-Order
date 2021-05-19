@@ -11,4 +11,9 @@ const callApiCreateMessOrder = async data => {
   return body.data;
 };
 
-export {callApiMessOrder, callApiCreateMessOrder};
+const callApiReadMessOrder = async idMess => {
+  const body = await callApi('put', `mess-order/read-message/${idMess}`);
+  return body.data;
+};
+
+export {callApiMessOrder, callApiCreateMessOrder, callApiReadMessOrder};

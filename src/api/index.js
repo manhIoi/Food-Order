@@ -20,8 +20,12 @@ import {
   callApiRemoveFromCart,
   callApiCreateCart,
   callApiClearCart,
-} from '../api/apiCart';
-import {callApiMessOrder, callApiCreateMessOrder} from './apiMessOrder';
+} from './apiCart';
+import {
+  callApiMessOrder,
+  callApiCreateMessOrder,
+  callApiReadMessOrder,
+} from './apiMessOrder';
 import {callApiBanner} from './apiBanner';
 
 const rootApi = {
@@ -45,6 +49,7 @@ const rootApi = {
   callApiCheckPassword,
   callApiUpdatePassword,
   callApiBanner,
+  callApiReadMessOrder,
 };
 
 export default rootApi;

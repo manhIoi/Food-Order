@@ -25,7 +25,7 @@ function Banner(props) {
         autoplay={true}
         enableMomentum={false}
         lockScrollWhileSnapping={true}
-        autoplayInterval={4000}
+        autoplayInterval={2000}
         enableSnap={true}
         loop={true}
         scrollEnabled={false}
@@ -62,15 +62,12 @@ function Banner(props) {
           backgroundColor: '#5e5e5e',
         }}
         inactiveDotStyle={{
-          width: 12,
-          height: 5,
+          width: 10,
+          height: 10,
           backgroundColor: '#00000087',
         }}
-        tappableDots={true}
         inactiveDotOpacity={0.4}
-        animatedTension={10}
         inactiveDotScale={0.6}
-        activeAnimationType="spring"
         carouselRef={_slider1Ref}
         tappableDots={_slider1Ref}
       />

@@ -32,4 +32,19 @@ const createMessOrder = newMessOrder => async dispatch => {
   }
 };
 
-export {fecthMessOrder, createMessOrder};
+const readMessOrder = idMess => async dispatch => {
+  try {
+    const body = await rootApi.callApiReadMessOrder(idMess);
+    console.log(body);
+    if (body._id) {
+      return dispatch({
+        type: Types.messOrderActionType.READ_MESS_ORDER,
+        payload: body,
+      });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export {fecthMessOrder, createMessOrder, readMessOrder};

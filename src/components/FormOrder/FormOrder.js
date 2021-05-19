@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {TextInput, View, Text} from 'react-native';
+import {TextInput, View, Text, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import ButtonPrimary from '../Button/ButtonPrimary';
@@ -61,7 +61,7 @@ function FormOrder(props) {
           message: message,
         }),
       );
-      alert('Sản phẩm được thêm');
+      Alert.alert('Thông báo', 'Sản phẩm được thêm');
     }
   };
 

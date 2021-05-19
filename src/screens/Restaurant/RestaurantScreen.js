@@ -32,9 +32,6 @@ function RestaurantScreen(props) {
           scrollY={scrollY}
         />
         <Foods foods={foods} />
-        {/* {restaurant.foodsCategories.map((foods, index) => (
-          <Foods key={index} foods={foods} />
-        ))} */}
       </ScrollView>
     </View>
   );

@@ -5,11 +5,9 @@ import stylesFoods from './styles';
 
 function Foods(props) {
   const {foods} = props;
+  console.log(foods);
   return (
     <View style={stylesFoods.foodsContainer}>
-      <View style={stylesFoods.foodsHeader}>
-        <Text style={stylesFoods.foodsHeaderText}>{foods.header}</Text>
-      </View>
       <View>
         {foods.map((food, index) => (
           <Food

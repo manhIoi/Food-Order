@@ -6,7 +6,6 @@ import ButtonPrimary from '../../components/Button/ButtonPrimary';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'react-native';
-import {fecthMessOrder} from '../../redux/actions/messOrderAction';
 
 function MessagesScreen() {
   const messages = useSelector(state => state.messOrder);
@@ -22,9 +21,12 @@ function MessagesScreen() {
             paddingBottom: 20,
           }}>
           {messages &&
-            messages.map(message => (
-              <MessageCard key={message._id} message={message} />
-            ))}
+            messages
+              .slice(0)
+              .reverse()
+              .map(message => (
+                <MessageCard key={message._id} message={message} />
+              ))}
         </View>
       ) : (
         <View style={{marginTop: 30, alignItems: 'center'}}>

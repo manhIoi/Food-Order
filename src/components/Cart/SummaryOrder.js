@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import ButtonPrimary from '../Button/ButtonPrimary';
 import {useNavigation} from '@react-navigation/native';
 import convertMoney from '../../utils/convertMoney';
@@ -16,9 +16,8 @@ function SummaryOrder(props) {
   const handleOrderFood = async () => {
     if (cart.foods.length > 0) {
       if (!inputAddress) {
-        alert('Your address is empty ! Please fill it ^_^');
+        Alert.alert('Lỗi', 'Vui lòng nhập địa chỉ giao hàng ! ^_^');
       } else {
-        setInputAddress('');
         await dispatch(
           createMessOrder({
             idUser: user._id,
@@ -36,10 +35,11 @@ function SummaryOrder(props) {
           }),
         );
         await dispatch(clearCart(user._id));
-        navigation.navigate('Messages');
+        setInputAddress('');
+        navigation.navigate('Messages', {screen: 'Messages Order'});
       }
     } else {
-      alert('no item for order');
+      Alert.alert('Thông báo', 'Không có món ăn để đặt !');
     }
   };
   return (
