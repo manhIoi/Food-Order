@@ -9,7 +9,6 @@ import * as Types from '../types';
 const login = formData => async dispatch => {
   try {
     const {data} = await callApiLogin(formData);
-    console.log(data);
     if (data.userToken) {
       const userJSON = JSON.stringify({
         ...formData,
@@ -74,13 +73,15 @@ const updateUser = (idUser, formData) => async dispatch => {
 
 const changePassword = (idUser, formData) => async dispatch => {
   try {
-    const body = await callApiUpdatePassword(idUser, formData);
-    console.log(body);
+    const userJson = await AsyncStorage.getItem('user');
+    const userObj = JSON.parse(userJson);
+    console.log(userObj);
+    const body = await callApiUpdatePassword(
+      idUser,
+      formData,
+      userObj.userToken,
+    );
     if (body._id) {
-      const userJson = await AsyncStorage.getItem('user');
-      console.log(userJson);
-
-      const userObj = JSON.parse(userJson);
       await AsyncStorage.setItem(
         'user',
         JSON.stringify({
@@ -88,9 +89,6 @@ const changePassword = (idUser, formData) => async dispatch => {
           password: formData.password,
         }),
       );
-
-      const test = await AsyncStorage.getItem('user');
-      console.log(test);
 
       return dispatch({
         type: Types.userActionType.CHANGE_PASSWORD,

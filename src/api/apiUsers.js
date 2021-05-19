@@ -1,4 +1,5 @@
 import callApi from '../utils/callApi';
+import {callApiWithOptions} from '../utils/callApi';
 
 const callApiRegister = async formData => {
   const result = await callApi('post', 'users/register', formData);
@@ -30,11 +31,12 @@ const callApiCheckPassword = async (idUser, formData) => {
   return result.data;
 };
 
-const callApiUpdatePassword = async (idUser, formData) => {
-  const result = await callApi(
+const callApiUpdatePassword = async (idUser, formData, userToken) => {
+  const result = await callApiWithOptions(
     'put',
     `users/update-password/change/${idUser}`,
     formData,
+    {authToken: userToken},
   );
   return result.data;
 };
